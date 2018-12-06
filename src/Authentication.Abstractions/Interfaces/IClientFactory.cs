@@ -20,14 +20,20 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Microsoft.Azure.Commands.Common.Authentication
 {
     /// <summary>
     /// A factory for authenticated and configured Http, Hyak, and AutoRest clients
     /// </summary>
-    public interface IClientFactory: IHyakClientFactory
+    public interface IClientFactory
     {
+        /// <summary>
+        /// Authenticator used with this ClientFactory
+        /// </summary>
+        IAuthenticationFactory Authenticator { get; }
+
         /// <summary>
         /// Create a properly configured AutoRest client using the given target Azure context and named endpoint
         /// </summary>
@@ -36,7 +42,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication
         /// <param name="endpoint">The named endpoint the client shoulld target</param>
         /// <returns>A client properly authenticated in the given context, properly configured for use with Azure PowerShell, 
         /// targeting the given named endpoint in the targeted environment</returns>
-        TClient CreateArmClient<TClient>(IAzureContext context, string endpoint) where TClient : ServiceClient<TClient>;
+        Task<TClient> CreateServiceClientAsync<TClient>(IAzureContext context, string endpoint) where TClient : ServiceClient<TClient>;
 
         /// <summary>
         /// Create a properly configured AutoRest client using custom client parameters
@@ -45,7 +51,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication
         /// <param name="parameters">The parameters to pass to a client constructor.  
         /// The parameters must match an existing constructor for the given client type</param>
         /// <returns>A client properly configured for use with Azure PowerShell</returns>
-        TClient CreateCustomArmClient<TClient>(params object[] parameters) where TClient : ServiceClient<TClient>;
+        Task<TClient> CreateCustomServiceClientAsync<TClient>(params object[] parameters) where TClient : ServiceClient<TClient>;
 
         /// <summary>
         /// Create a properly configured HttpEndpoint, using the given named target endpoint and http credentials
@@ -53,7 +59,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication
         /// <param name="endpoint">The named endpoint to target</param>
         /// <param name="credentials">The cerdentials to use with the client</param>
         /// <returns>An http client properly configured for use with Azure PowerShell</returns>
-        HttpClient CreateHttpClient(string endpoint, ICredentials credentials);
+        Task<HttpClient> CreateHttpClientAsync(string endpoint, ICredentials credentials);
 
         /// <summary>
         /// Create a properly configured HttpEndpoint, using the given named target endpoint and http base handler
@@ -61,19 +67,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication
         /// <param name="endpoint">The named endpoint to target</param>
         /// <param name="effectiveHandler">The handler at the base of the handler stack</param>
         /// <returns>An http client properly configured for use with Azure PowerShell</returns>
-        HttpClient CreateHttpClient(string endpoint, HttpMessageHandler effectiveHandler);
-
-        /// <summary>
-        /// Add the given custom client configuration to all clients created through this factory
-        /// </summary>
-        /// <param name="action">The client configuration to add</param>
-        void AddAction(IClientAction action);
-
-        /// <summary>
-        /// Remove the given custom client configuration, so it is no longer used with clients created using this factory
-        /// </summary>
-        /// <param name="actionType"></param>
-        void RemoveAction(Type actionType);
+        Task<HttpClient> CreateHttpClientAsync(string endpoint, HttpMessageHandler effectiveHandler);
 
         /// <summary>
         /// Add the given delegating handler to all clients created by this factory

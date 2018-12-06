@@ -20,10 +20,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Authentication.Abstractions\Authentication.Abstractions.Netcore.csproj" />
-    <ProjectReference Include="..\Authentication\Authentication.Netcore.csproj" />
+    <ProjectReference Include="..\Authentication.Abstractions\Abstractions.csproj" />
+    <ProjectReference Include="..\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\Common\Cmdlet.csproj" />
     <ProjectReference Include="..\Storage.Management\Storage.Management.Netcore.csproj" />
-    <ProjectReference Include="..\Common\Common.Netcore.csproj" />
     <ProjectReference Include="..\ScenarioTest.ResourceManager\ScenarioTest.ResourceManager.Netcore.csproj" />
   </ItemGroup>
 

@@ -46,5 +46,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication
         /// If this token was obtained with user credentials, the type of user credentials used
         /// </summary>
         string LoginType { get; }
+
+        DateTimeOffset ExpiresOn { get; }
     }
 }

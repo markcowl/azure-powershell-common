@@ -19,8 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Cmdlet.csproj" />
     <ProjectReference Include="..\ScenarioTest.ResourceManager\ScenarioTest.ResourceManager.Netcore.csproj" />
-    <ProjectReference Include="..\Common\Common.Netcore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

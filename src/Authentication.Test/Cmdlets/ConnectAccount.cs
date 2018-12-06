@@ -335,7 +335,7 @@ namespace Common.Authentication.Test.Cmdlets
                 SubscriptionClient subscriptionClient = null;
                 try
                 {
-                    subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomArmClient<SubscriptionClient>(
+                    subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomServiceClient<SubscriptionClient>(
                         environment.GetEndpointAsUri(AzureEnvironment.Endpoint.ResourceManager),
                         new TokenCredentials(commonTenantToken.AccessToken) as ServiceClientCredentials,
                         AzureSession.Instance.ClientFactory.GetCustomHandlers());
@@ -452,7 +452,7 @@ namespace Common.Authentication.Test.Cmdlets
             }
 
             SubscriptionClient subscriptionClient = null;
-            subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomArmClient<SubscriptionClient>(
+            subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomServiceClient<SubscriptionClient>(
                     environment.GetEndpointAsUri(AzureEnvironment.Endpoint.ResourceManager),
                     new TokenCredentials(accessToken.AccessToken) as ServiceClientCredentials,
                     AzureSession.Instance.ClientFactory.GetCustomHandlers());
@@ -533,7 +533,7 @@ namespace Common.Authentication.Test.Cmdlets
             out IAzureSubscription subscription,
             out IAzureTenant tenant)
         {
-            using (var subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomArmClient<SubscriptionClient>(
+            using (var subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomServiceClient<SubscriptionClient>(
                         environment.GetEndpointAsUri(AzureEnvironment.Endpoint.ResourceManager),
                         new TokenCredentials(accessToken.AccessToken) as ServiceClientCredentials,
                         AzureSession.Instance.ClientFactory.GetCustomHandlers()))

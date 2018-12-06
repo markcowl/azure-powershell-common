@@ -12,12 +12,18 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-namespace Microsoft.WindowsAzure.Commands.Utilities.Common
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
 {
-    public class ManagementOperationContext
+    /// <summary>
+    /// Abstract factory for IClientFactory
+    /// </summary>
+    public interface IClientFactoryProvider
     {
-        public string OperationDescription { get; set; }
-        public string OperationId { get; set; }
-        public string OperationStatus { get; set; }
+        IClientFactory CreateClientFactory(IAuthenticationFactory authenticator);
     }
 }

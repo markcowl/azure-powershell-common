@@ -19,7 +19,6 @@ namespace Microsoft.Azure.Commands.Common.Authentication
     /// </summary>
     public enum AzureModule
     {
-        AzureServiceManagement,
         AzureResourceManager,
         AzureProfile
     }

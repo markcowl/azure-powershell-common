@@ -1,20 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="$(ProjectDir)..\Dependencies.Netcore.targets" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Microsoft.Azure.PowerShell.Graph.Rbac</AssemblyName>
-    <RootNamespace>Microsoft.Azure.Commands.Common.Graph.RBAC</RootNamespace>
+    <AssemblyName>Microsoft.Azure.PowerShell.Model</AssemblyName>
+    <RootNamespace>Microsoft.Azure.PowerShell.Model</RootNamespace>
     <OutputPath>$(ProjectDir)..\..\artifacts\$(Configuration)</OutputPath>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>Microsoft Azure PowerShell Graph Rbac</Title>
-    <Description>Microsoft Azure PowerShell Graph Rbac library. Only for use with the Azure PowerShell runtime. Not intended for general development use.</Description>
-    <PackageTags>azure;powershell;graph;rbac</PackageTags>
+    <Title>Microsoft Azure PowerShell Models</Title>
+    <Description>Microsoft Azure PowerShell Models library. Only for use with the Azure PowerShell runtime. Not intended for general development use.</Description>
+    <PackageTags>azure;powershell;models</PackageTags>
     <Authors>Microsoft Corporation</Authors>
     <Copyright>Copyright © Microsoft Corporation</Copyright>
     <PackageLicenseUrl>https://aka.ms/azps-common-license</PackageLicenseUrl>
@@ -36,30 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Authentication.Abstractions\Abstractions.csproj" />
-    <ProjectReference Include="..\Common\Cmdlet.csproj" />
-    <ProjectReference Include="..\ResourceManager\ResourceManager.Netcore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>true</DesignTime>
-      <AutoGen>true</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Remove="Properties\AssemblyInfo.cs" />
-    <None Remove="Properties\AssemblyInfo.cs" />
-    <Content Remove="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 
 </Project>

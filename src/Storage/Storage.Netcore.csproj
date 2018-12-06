@@ -50,10 +50,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Authentication.Abstractions\Authentication.Abstractions.Netcore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>true</DesignTime>
       <AutoGen>true</AutoGen>
@@ -73,6 +69,10 @@
     <EmbeddedResource Remove="Properties\AssemblyInfo.cs" />
     <None Remove="Properties\AssemblyInfo.cs" />
     <Content Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Authentication.Abstractions\Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

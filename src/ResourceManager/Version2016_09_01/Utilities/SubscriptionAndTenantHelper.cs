@@ -88,7 +88,7 @@ namespace Microsoft.Azure.Commands.ResourceManager.Common.Utilities
             SubscriptionClient subscriptionClient = null;
             try
             {
-                subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomArmClient<SubscriptionClient>(
+                subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomServiceClient<SubscriptionClient>(
                     defaultContext.Environment.GetEndpointAsUri(AzureEnvironment.Endpoint.ResourceManager),
                     new TokenCredentials(commonTenantToken.AccessToken) as ServiceClientCredentials,
                     AzureSession.Instance.ClientFactory.GetCustomHandlers());
@@ -133,7 +133,7 @@ namespace Microsoft.Azure.Commands.ResourceManager.Common.Utilities
             }
 
             SubscriptionClient subscriptionClient = null;
-            subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomArmClient<SubscriptionClient>(
+            subscriptionClient = AzureSession.Instance.ClientFactory.CreateCustomServiceClient<SubscriptionClient>(
                     environment.GetEndpointAsUri(AzureEnvironment.Endpoint.ResourceManager),
                     new TokenCredentials(accessToken.AccessToken) as ServiceClientCredentials,
                     AzureSession.Instance.ClientFactory.GetCustomHandlers());

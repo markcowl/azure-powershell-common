@@ -239,17 +239,17 @@ namespace Microsoft.WindowsAzure.Commands.Common.Test.Mocks
             }
         }
 
-        public TClient CreateArmClient<TClient>(IAzureContext context, string endpoint) where TClient : Rest.ServiceClient<TClient>
+        public TClient CreateServiceClient<TClient>(IAzureContext context, string endpoint) where TClient : Rest.ServiceClient<TClient>
         {
             Debug.Assert(context != null);
             var credentials = AzureSession.Instance.AuthenticationFactory.GetServiceClientCredentials(context);
-            var client = CreateCustomArmClient<TClient>(credentials, context.Environment.GetEndpointAsUri(endpoint),
+            var client = CreateCustomServiceClient<TClient>(credentials, context.Environment.GetEndpointAsUri(endpoint),
                 context.Subscription.Id);
             return client;
 
         }
 
-        public TClient CreateCustomArmClient<TClient>(params object[] parameters) where TClient : Rest.ServiceClient<TClient>
+        public TClient CreateCustomServiceClient<TClient>(params object[] parameters) where TClient : Rest.ServiceClient<TClient>
         {
             TClient client = ManagementClients.FirstOrDefault(o => o is TClient) as TClient;
             if (client == null)
@@ -266,7 +266,7 @@ namespace Microsoft.WindowsAzure.Commands.Common.Test.Mocks
                     var newParameters = new object[parameters.Length + 1];
                     Array.Copy(parameters, 0, newParameters, 1, parameters.Length);
                     newParameters[0] = HttpMockServer.CreateInstance();
-                    var realClient = realClientFactory.CreateCustomArmClient<TClient>(newParameters);
+                    var realClient = realClientFactory.CreateCustomServiceClient<TClient>(newParameters);
                     return realClient;
                 }
             }

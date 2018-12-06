@@ -40,7 +40,7 @@ namespace Microsoft.Azure.Commands.TestFx
             _mockContext = mockContext ?? throw new ArgumentNullException(nameof(mockContext));
         }
 
-        public TClient CreateArmClient<TClient>(IAzureContext context, string endpoint) where TClient : Rest.ServiceClient<TClient>
+        public TClient CreateServiceClient<TClient>(IAzureContext context, string endpoint) where TClient : Rest.ServiceClient<TClient>
         {
             if (typeof(TClient) != typeof(GraphRbacManagementClient))
             {
@@ -52,7 +52,7 @@ namespace Microsoft.Azure.Commands.TestFx
             return graphClient as TClient;
         }
 
-        public TClient CreateCustomArmClient<TClient>(params object[] parameters) where TClient : Rest.ServiceClient<TClient>
+        public TClient CreateCustomServiceClient<TClient>(params object[] parameters) where TClient : Rest.ServiceClient<TClient>
         {
             return _mockContext.GetServiceClient<TClient>();
         }

@@ -46,6 +46,11 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
         IEnumerable<IAzureAccount> Accounts { get; }
 
         /// <summary>
+        /// The token cache used by individual contexts
+        /// </summary>
+        IAzureTokenCache TokenCache { get; }
+
+        /// <summary>
         /// Remove all contexts from the container
         /// </summary>
         void Clear();

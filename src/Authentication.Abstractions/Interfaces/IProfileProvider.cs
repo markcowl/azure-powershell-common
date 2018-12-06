@@ -24,5 +24,16 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
         T GetProfile<T>() where T : class, IAzureContextContainer;
         void SetTokenCacheForProfile(IAzureContextContainer profile);
         void ResetDefaultProfile();
+
+        /// <summary>
+        /// Gets or sets token cache file path.
+        /// </summary>
+        string TokenCachePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets profile directory.
+        /// </summary>
+        string ProfilePath { get; set; }
+
     }
 }

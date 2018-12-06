@@ -12,7 +12,8 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
+
+namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions.Core
 {
     /// <summary>
     /// The current target for azure powershell cmdlets
@@ -45,8 +46,8 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
         string VersionProfile { get; set; }
 
         /// <summary>
-        /// The cached authentication data
+        /// Parent of the context container
         /// </summary>
-        IAzureTokenCache TokenCache { get; set; }
+        IAzureContextContainer Parent { get; set; }
     }
 }

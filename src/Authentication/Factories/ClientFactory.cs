@@ -52,7 +52,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
             _handlersLock = new ReaderWriterLockSlim();
         }
 
-        public virtual TClient CreateArmClient<TClient>(IAzureContext context, string endpoint) where TClient : Microsoft.Rest.ServiceClient<TClient>
+        public virtual TClient CreateServiceClient<TClient>(IAzureContext context, string endpoint) where TClient : Microsoft.Rest.ServiceClient<TClient>
         {
             if (context == null)
             {
@@ -61,7 +61,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
 
             var creds = AzureSession.Instance.AuthenticationFactory.GetServiceClientCredentials(context, endpoint);
             var baseUri = context.Environment.GetEndpointAsUri(endpoint);
-            TClient client = CreateCustomArmClient<TClient>(baseUri, creds);
+            TClient client = CreateCustomServiceClient<TClient>(baseUri, creds);
             var subscriptionId = typeof(TClient).GetProperty("SubscriptionId");
             if (subscriptionId != null && context.Subscription != null)
             {
@@ -71,7 +71,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
             return client;
         }
 
-        public virtual TClient CreateCustomArmClient<TClient>(params object[] parameters) where TClient : Microsoft.Rest.ServiceClient<TClient>
+        public virtual TClient CreateCustomServiceClient<TClient>(params object[] parameters) where TClient : Microsoft.Rest.ServiceClient<TClient>
         {
             List<Type> types = new List<Type>();
             List<object> parameterList = new List<object>();

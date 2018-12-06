@@ -147,5 +147,15 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
                 context.UpdateProperties(other);
             }
         }
+
+        /// <summary>
+        /// Get the TokenCache for this context
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static IAzureTokenCache GetTokenCache(this IAzureContext context)
+        {
+            return context?.Parent?.TokenCache;
+        }
     }
 }

@@ -7,18 +7,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Microsoft.Azure.PowerShell.Common</AssemblyName>
-    <RootNamespace>Microsoft.WindowsAzure.Commands.Common</RootNamespace>
+    <AssemblyName>Microsoft.Azure.PowerShell.Authentication.Abstractions</AssemblyName>
+    <RootNamespace>Microsoft.Azure.Commands.Common.Authentication.Abstractions</RootNamespace>
     <OutputPath>$(ProjectDir)..\..\artifacts\$(Configuration)</OutputPath>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>Microsoft Azure PowerShell Common</Title>
-    <Description>Microsoft Azure PowerShell Common library. Only for use with the Azure PowerShell runtime. Not intended for general development use.</Description>
-    <PackageTags>azure;powershell;common</PackageTags>
+    <Title>Microsoft Azure PowerShell Authentication Abstractions</Title>
+    <Description>Microsoft Azure PowerShell Authentication Abstractions library. Only for use with the Azure PowerShell runtime. Not intended for general development use.</Description>
+    <PackageTags>azure;powershell;authentication;abstractions</PackageTags>
     <Authors>Microsoft Corporation</Authors>
     <Copyright>Copyright © Microsoft Corporation</Copyright>
     <PackageLicenseUrl>https://aka.ms/azps-common-license</PackageLicenseUrl>
@@ -39,7 +38,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Authentication.Abstractions\Authentication.Abstractions.Netcore.csproj" />
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.18" />
+    <PackageReference Include="Microsoft.Rest.ClientRuntime.Azure" Version="3.3.18" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>

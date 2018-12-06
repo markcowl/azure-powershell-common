@@ -4,6 +4,7 @@
     <IncludeSource>True</IncludeSource>
     <IncludeSymbols>True</IncludeSymbols>
   </PropertyGroup>
+  <!--
   <ItemGroup Condition="'$(OmitJsonPackage)' != 'true'">
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
@@ -19,4 +20,5 @@
     <PackageReference Include="Microsoft.Azure.Common" Version="2.2.1" />
     <PackageReference Include="Hyak.Common" Version="1.2.2" />
   </ItemGroup>
+  -->
 </Project>

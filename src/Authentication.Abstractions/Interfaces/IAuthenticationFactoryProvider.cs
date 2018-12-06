@@ -12,22 +12,18 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-namespace Microsoft.WindowsAzure.Commands.Utilities.CloudService
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
 {
-    public class Parameters
+    /// <summary>
+    /// Abstract factory for IClientFactory
+    /// </summary>
+    public interface IIAuthenticationFactoryProvider
     {
-        public const string ServiceName = "ServiceName";
-
-        public const string RootPath = "RootPath";
-
-        public const string CacheWorkerRoleName = "CacheWorkerRoleName";
-
-        public const string Instances = "Instances";
-
-        public const string RoleName = "RoleName";
-
-        public const string PackagePath = "PackagePath";
-
-        public const string Path = "Path";
+        IClientFactory CreateAuthenticationFactory();
     }
 }
