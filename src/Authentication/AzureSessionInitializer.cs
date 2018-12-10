@@ -210,6 +210,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication
             session.TokenCache = InitializeTokenCache(dataStore, session.TokenCacheDirectory, session.TokenCacheFile, autoSave.Mode);
             InitializeDataCollection(session);
             session.RegisterComponent(HttpClientOperationsFactory.Name, () => HttpClientOperationsFactory.Create());
+            session.RegisterComponent(AuthenticatorBuilder.AuthenticatorBuilderName, () => new AuthenticatorBuilder());
             return session;
         }
 

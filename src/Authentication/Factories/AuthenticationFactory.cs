@@ -32,6 +32,22 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
 
         IAuthenticator _authenticatorChain;
 
+        IAuthenticator AuthenicatorChain {
+            get
+            {
+                if (_authenticatorChain == null)
+                {
+                    IAuthenticatorBuilder builder;
+                    if (AzureSession.Instance.TryGetComponent(AuthenticatorBuilder.AuthenticatorBuilderName, out builder))
+                    {
+                        _authenticatorChain = builder.AuthenticatorChain;
+                    }
+                }
+
+                return _authenticatorChain;
+            }
+        }
+
         public AuthenticationFactory()
         {
             _getKeyStore = () =>
@@ -45,11 +61,6 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
                 return keyStore;
             };
             TokenProvider = new AdalTokenProvider(_getKeyStore);
-            IAuthenticatorBuilder builder;
-            if (AzureSession.Instance.TryGetComponent(AuthenticatorBuilder.AuthenticatorBuilderName, out builder))
-            {
-                _authenticatorChain = builder.AuthenticatorChain;
-            }
         }
 
         private Func<IServicePrincipalKeyStore> _getKeyStore;
@@ -91,9 +102,9 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
                 cache = TokenCache.DefaultShared;
             }
 
-            if (_authenticatorChain != null)
+            if (AuthenicatorChain != null)
             {
-                var result = _authenticatorChain.Authenticate(account, environment, tenant, password, promptBehavior, null, tokenCache, resourceId);
+                var result = AuthenicatorChain.Authenticate(account, environment, tenant, password, promptBehavior, null, tokenCache, resourceId);
                 if (result != null)
                 {
                     return result.GetAwaiter().GetResult();
