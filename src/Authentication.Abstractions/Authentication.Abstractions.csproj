@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AuthenticationStore.cs" />
     <Compile Include="Authentication\AadAuthenticationException.cs" />
+    <Compile Include="AuthenticatorBuilder.cs" />
     <Compile Include="AzureAccount.cs" />
     <Compile Include="AzurePSDataCollectionProfile.cs" />
     <Compile Include="AzureRmProfileProvider.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="Extensions\AzureTenantExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Interfaces\IAccessToken.cs" />
+    <Compile Include="Interfaces\IAuthenticator.cs" />
+    <Compile Include="Interfaces\IAuthenticatorBuilder.cs" />
     <Compile Include="Interfaces\IExtensibleSettings.cs" />
     <Compile Include="Interfaces\IExtensibleModel.cs" />
     <Compile Include="Interfaces\IFileProvider.cs" />
