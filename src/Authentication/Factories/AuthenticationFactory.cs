@@ -30,6 +30,8 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
             DefaultMSILoginUri = "http://169.254.169.254/metadata/identity/oauth2/token",
             DefaultBackupMSILoginUri = "http://localhost:50342/oauth2/token";
 
+        IAuthenticator _authenticatorChain;
+
         public AuthenticationFactory()
         {
             _getKeyStore = () =>
@@ -43,6 +45,11 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
                 return keyStore;
             };
             TokenProvider = new AdalTokenProvider(_getKeyStore);
+            IAuthenticatorBuilder builder;
+            if (AzureSession.Instance.TryGetComponent(AuthenticatorBuilder.AuthenticatorBuilderName, out builder))
+            {
+                _authenticatorChain = builder.AuthenticatorChain;
+            }
         }
 
         private Func<IServicePrincipalKeyStore> _getKeyStore;
@@ -82,6 +89,15 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
             if (cache == null)
             {
                 cache = TokenCache.DefaultShared;
+            }
+
+            if (_authenticatorChain != null)
+            {
+                var result = _authenticatorChain.Authenticate(account, environment, tenant, password, promptBehavior, null, tokenCache, resourceId);
+                if (result != null)
+                {
+                    return result.GetAwaiter().GetResult();
+                }
             }
 
             var configuration = GetAdalConfiguration(environment, tenant, resourceId, cache);
