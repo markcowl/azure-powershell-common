@@ -23,7 +23,7 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Abstractions
         public const string AuthenticatorBuilderName = nameof(AuthenticatorBuilder);
         IAuthenticator _chain = new PassThroughAuthenticator();
 
-        public IAuthenticator AuthenticatorChain => throw new NotImplementedException();
+        public IAuthenticator AuthenticatorChain => _chain;
 
         public void AddAuthenticator(IAuthenticator authenticator)
         {
